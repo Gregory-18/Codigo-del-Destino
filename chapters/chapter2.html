@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 2: El Mensaje Cifrado - Código del Destino</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Estilos específicos para este capítulo */
+        .cipher-text {
+            font-family: monospace;
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chapter">
+            <h2 class="chapter-title">Capítulo 2: El Mensaje Cifrado</h2>
+            
+            <div class="chapter-content">
+                <p>Al abrir el candado, encuentras un pergamino con un mensaje cifrado:</p>
+                
+                <div class="cipher-text typewriter">
+                    "JQ XJHWJYT XJ JSHZJSYWF JS QF GNGQNTYJHF"
+                </div>
+                
+                <p>Una nota adjunta menciona: "El código está en el alfabeto, solo debes retroceder en el tiempo."</p>
+                
+                <div class="hint">
+                    <p>Nota: Este es un archivo de ejemplo que muestra cómo se vería este capítulo. En la versión final, los capítulos se cargan dinámicamente mediante JavaScript sin recargar la página.</p>
+                </div>
+            </div>
+            
+            <div class="puzzle-form">
+                <h3>¿Cuál es el mensaje descifrado?</h3>
+                <form id="puzzle-form">
+                    <div class="form-group">
+                        <label for="puzzle-answer">Tu respuesta:</label>
+                        <input type="text" id="puzzle-answer" name="puzzle-answer" required>
+                    </div>
+                    <button type="submit" class="btn">Comprobar</button>
+                </form>
+                <div id="feedback" class="feedback hidden"></div>
+                <div class="hint-section">
+                    <button id="hint-btn" class="btn btn-secondary">Dame una pista</button>
+                    <p id="hint-text" class="hint hidden"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script básico para demostración
+        document.addEventListener('DOMContentLoaded', () => {
+            const puzzleForm = document.getElementById('puzzle-form');
+            const feedback = document.getElementById('feedback');
+            const hintBtn = document.getElementById('hint-btn');
+            const hintText = document.getElementById('hint-text');
+            
+            const hints = [
+                "Este es un cifrado César, donde cada letra se desplaza un número fijo de posiciones.",
+                "Retroceder en el tiempo sugiere mover las letras hacia atrás en el alfabeto.",
+                "Prueba desplazando cada letra 5 posiciones hacia atrás."
+            ];
+            
+            let hintIndex = 0;
+            
+            // Manejar envío del formulario
+            puzzleForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userAnswer = document.getElementById('puzzle-answer').value.trim().toLowerCase();
+                const correctAnswer = "el secreto se encuentra en la biblioteca";
+                
+                feedback.classList.remove('hidden', 'success', 'error');
+                
+                if (userAnswer === correctAnswer) {
+                    feedback.classList.add('success');
+                    feedback.textContent = '¡Correcto! Has resuelto el enigma. En el juego completo, esto te llevaría al siguiente capítulo.';
+                } else {
+                    feedback.classList.add('error');
+                    feedback.textContent = 'Incorrecto. Inténtalo de nuevo.';
+                }
+            });
+            
+            // Mostrar pistas
+            hintBtn.addEventListener('click', () => {
+                hintText.textContent = hints[hintIndex % hints.length];
+                hintText.classList.remove('hidden');
+                hintIndex++;
+            });
+            
+            // Aplicar animación de typewriter
+            const typewriterElements = document.querySelectorAll('.typewriter');
+            typewriterElements.forEach(element => {
+                // Reiniciar la animación para demostración
+                element.style.animation = 'none';
+                setTimeout(() => {
+                    element.style.animation = '';
+                }, 10);
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 4: El Secreto Revelado - Código del Destino</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chapter">
+            <h2 class="chapter-title">Capítulo 4: El Secreto Revelado</h2>
+            
+            <div class="chapter-content">
+                <p>Al resolver la adivinanza, el bibliotecario asiente con aprobación y te guía hacia una sala oculta. Allí, sobre un pedestal, encuentras un antiguo libro abierto que revela el secreto tan largamente guardado:</p>
+                
+                <blockquote class="typewriter important-message" id="final-message">"El verdadero tesoro no es el oro ni las joyas, sino el conocimiento. Has demostrado ser digno de este legado. Tu búsqueda por la verdad apenas comienza, pero has dado el primer paso. El código final te espera en el próximo capítulo de tu aventura..."</blockquote>
+                
+                <p>Al cerrar el libro, descubres grabado en su contraportada un símbolo misterioso y una frase enigmática que parece ser el inicio de una nueva búsqueda.</p>
+                
+                <div class="hint">
+                    <p>Nota: Este es un archivo de ejemplo que muestra cómo se vería este capítulo. En la versión final, los capítulos se cargan dinámicamente mediante JavaScript sin recargar la página.</p>
+                </div>
+            </div>
+            
+            <div class="game-stats">
+                <h3>¡Has completado la aventura!</h3>
+                <p>En el juego completo, aquí verías tus estadísticas como el tiempo total y las pistas utilizadas.</p>
+                <button id="restart-btn" class="btn">Volver a Jugar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script básico para demostración
+        document.addEventListener('DOMContentLoaded', () => {
+            const restartBtn = document.getElementById('restart-btn');
+            const finalMessage = document.getElementById('final-message');
+            
+            // Simular el efecto de escritura del mensaje final
+            function revealFinalMessage(element) {
+                const text = element.textContent;
+                element.textContent = '';
+                element.style.opacity = '1';
+                
+                let i = 0;
+                const speed = 50; // velocidad de escritura en milisegundos
+                
+                function typeWriter() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, speed);
+                    } else {
+                        // Añadir brillo pulsante cuando termina de escribir
+                        element.classList.add('reveal-complete');
+                    }
+                }
+                
+                setTimeout(() => {
+                    typeWriter();
+                }, 1000); // retraso antes de comenzar a escribir
+            }
+            
+            // Iniciar la animación de escritura
+            revealFinalMessage(finalMessage);
+            
+            // Evento para el botón de reinicio
+            restartBtn.addEventListener('click', () => {
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+</body>
+</html> 

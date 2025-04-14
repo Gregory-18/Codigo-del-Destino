@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 3: La Biblioteca Ancestral - Código del Destino</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chapter">
+            <h2 class="chapter-title">Capítulo 3: La Biblioteca Ancestral</h2>
+            
+            <div class="chapter-content">
+                <p>Siguiendo las indicaciones, llegas a una antigua biblioteca. En la entrada hay un librero que te detiene:</p>
+                <blockquote>"Para acceder a nuestro tesoro de conocimientos, debes demostrar tu sabiduría. Responde esta adivinanza:"</blockquote>
+                <div class="hint">
+                    <p>"Siempre va y viene pero nunca se mueve de su sitio. Puede ser tan fuerte que rompe rocas, o tan suave que apenas lo notas. La vida nació en su dominio. ¿Qué es?"</p>
+                </div>
+                
+                <div class="hint">
+                    <p>Nota: Este es un archivo de ejemplo que muestra cómo se vería este capítulo. En la versión final, los capítulos se cargan dinámicamente mediante JavaScript sin recargar la página.</p>
+                </div>
+            </div>
+            
+            <div class="puzzle-form">
+                <h3>¿Cuál es la respuesta a la adivinanza?</h3>
+                <form id="puzzle-form">
+                    <div class="form-group">
+                        <label for="puzzle-answer">Tu respuesta:</label>
+                        <input type="text" id="puzzle-answer" name="puzzle-answer" required>
+                    </div>
+                    <button type="submit" class="btn">Comprobar</button>
+                </form>
+                <div id="feedback" class="feedback hidden"></div>
+                <div class="hint-section">
+                    <button id="hint-btn" class="btn btn-secondary">Dame una pista</button>
+                    <p id="hint-text" class="hint hidden"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script básico para demostración
+        document.addEventListener('DOMContentLoaded', () => {
+            const puzzleForm = document.getElementById('puzzle-form');
+            const feedback = document.getElementById('feedback');
+            const hintBtn = document.getElementById('hint-btn');
+            const hintText = document.getElementById('hint-text');
+            
+            const hints = [
+                "Piensa en elementos naturales que tienen movimiento pero permanecen en su lugar.",
+                "Este elemento puede ser muy poderoso, pero también tranquilo.",
+                "Es un gran cuerpo de agua."
+            ];
+            
+            let hintIndex = 0;
+            
+            // Manejar envío del formulario
+            puzzleForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userAnswer = document.getElementById('puzzle-answer').value.trim().toLowerCase();
+                const acceptedAnswers = ["el mar", "mar", "océano", "oceano", "ocean", "agua", "olas"];
+                
+                feedback.classList.remove('hidden', 'success', 'error');
+                
+                if (acceptedAnswers.includes(userAnswer)) {
+                    feedback.classList.add('success');
+                    feedback.textContent = '¡Correcto! Has resuelto el enigma. En el juego completo, esto te llevaría al siguiente capítulo.';
+                } else {
+                    feedback.classList.add('error');
+                    feedback.textContent = 'Incorrecto. Inténtalo de nuevo.';
+                }
+            });
+            
+            // Mostrar pistas
+            hintBtn.addEventListener('click', () => {
+                hintText.textContent = hints[hintIndex % hints.length];
+                hintText.classList.remove('hidden');
+                hintIndex++;
+            });
+        });
+    </script>
+</body>
+</html> 
