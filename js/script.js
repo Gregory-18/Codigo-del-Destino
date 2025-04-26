@@ -321,7 +321,17 @@ function createPuzzleForm(chapter) {
         hintBtn.addEventListener('click', () => {
             // Seleccionar una pista basada en cuántas ha utilizado ya
             const currentHintIndex = Math.min(gameState.hintsUsed % puzzle.hints.length, puzzle.hints.length - 1);
-            hintText.textContent = puzzle.hints[currentHintIndex];
+            const hint = puzzle.hints[currentHintIndex];
+            
+            // Animar la aparición de las letras como en el código César, pero más rápido
+            let animatedHtml = '';
+            for (let i = 0; i < hint.length; i++) {
+                const char = hint[i];
+                // Se usa un retraso más corto para una animación más rápida
+                animatedHtml += `<span class="cipher-animated" style="--char-index: ${i}">${char}</span>`;
+            }
+            
+            hintText.innerHTML = animatedHtml;
             hintText.classList.remove('hidden');
             gameState.hintsUsed++;
         });

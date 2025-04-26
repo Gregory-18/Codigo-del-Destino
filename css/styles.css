@@ -228,6 +228,24 @@ label {
     border: 1px solid #e74c3c;
 }
 
+/* Pistas con animación */
+.hint-text {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.6;
+    padding: 15px;
+    background-color: rgba(233, 69, 96, 0.1);
+    border-left: 4px solid var(--accent-color);
+    margin: 15px 0;
+}
+
+/* Estilo para el texto en pistas con animación */
+#hint-text .cipher-animated {
+    font-family: 'Raleway', sans-serif;
+    margin-right: 2px;
+    display: inline-block;
+    animation-delay: calc(var(--char-index) * 0.03s);
+}
+
 /* Animación de texto de máquina de escribir */
 .typewriter {
     font-family: 'Courier New', monospace;

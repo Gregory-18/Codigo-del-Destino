@@ -123,9 +123,19 @@
                 }
             });
             
-            // Mostrar pistas
+            // Mostrar pistas con animación tipo código César
             hintBtn.addEventListener('click', () => {
-                hintText.textContent = hints[hintIndex % hints.length];
+                const hint = hints[hintIndex % hints.length];
+                
+                // Animar la aparición de las letras como en el código César, pero más rápido
+                let animatedHtml = '';
+                for (let i = 0; i < hint.length; i++) {
+                    const char = hint[i];
+                    // Se usa un retraso más corto para una animación más rápida
+                    animatedHtml += `<span class="cipher-animated" style="--char-index: ${i}">${char}</span>`;
+                }
+                
+                hintText.innerHTML = animatedHtml;
                 hintText.classList.remove('hidden');
                 hintIndex++;
             });
