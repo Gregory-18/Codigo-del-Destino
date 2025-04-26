@@ -5,6 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo 1: El Candado del Destino - Código del Destino</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Animación para las letras de las pistas */
+        .hint-animated p {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0;
+            opacity: 0;
+        }
+        
+        .hint-animated p:first-child {
+            animation: revealText 1.5s forwards 0.5s, floatText 3s ease-in-out infinite 2s;
+        }
+        
+        .hint-animated p:last-child {
+            animation: revealText 1.5s forwards 2.5s, floatText 3s ease-in-out infinite 4s;
+        }
+        
+        @keyframes revealText {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes floatText {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                text-shadow: 0 0 5px rgba(233, 69, 96, 0.6);
+            }
+            25% {
+                transform: translateY(-3px) translateX(2px);
+                text-shadow: 0 0 8px rgba(233, 69, 96, 0.8);
+            }
+            75% {
+                transform: translateY(3px) translateX(-2px);
+                text-shadow: 0 0 8px rgba(233, 69, 96, 0.8);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -15,7 +58,7 @@
                 <p>Al abrir la carta, descubres un mensaje enigmático:</p>
                 <blockquote>"El secreto se oculta tras un candado numérico. La inscripción indica que el número mágico es la suma de dos números misteriosos: el día en que comenzó todo y el número de llaves que guarda el guardián."</blockquote>
                 <p>En el reverso de la carta hay algunas pistas adicionales:</p>
-                <div class="hint">
+                <div class="hint hint-animated">
                     <p>- El día en que comenzó todo es el primer día de la semana.</p>
                     <p>- El guardián siempre lleva consigo tantas llaves como colores tiene el arcoíris.</p>
                 </div>

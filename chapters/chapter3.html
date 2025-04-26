@@ -5,6 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo 3: La Biblioteca Ancestral - Código del Destino</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Animación para las letras de las pistas */
+        .hint-animated p {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0;
+            opacity: 0;
+            margin-bottom: 8px; /* Añadir espacio entre párrafos */
+        }
+        
+        .hint-animated p:first-child {
+            animation: revealText 1.5s forwards 0.5s, floatText 3s ease-in-out infinite 2s;
+        }
+        
+        .hint-animated p:nth-child(2) {
+            animation: revealText 1.5s forwards 1.5s, floatText 3s ease-in-out infinite 3s;
+            display: block !important; /* Forzar que se muestre */
+            position: relative; /* Asegurar posicionamiento */
+            z-index: 2; /* Mayor z-index para asegurar visibilidad */
+        }
+        
+        .hint-animated p:last-child {
+            animation: revealText 1.5s forwards 2.5s, floatText 3s ease-in-out infinite 4s;
+        }
+        
+        /* Contenedor especial para la adivinanza */
+        .adivinanza {
+            border: 2px solid rgba(233, 69, 96, 0.3);
+            padding: 15px !important;
+            background-color: rgba(233, 69, 96, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        @keyframes revealText {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes floatText {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                text-shadow: 0 0 5px rgba(233, 69, 96, 0.6);
+            }
+            25% {
+                transform: translateY(-3px) translateX(2px);
+                text-shadow: 0 0 8px rgba(233, 69, 96, 0.8);
+            }
+            75% {
+                transform: translateY(3px) translateX(-2px);
+                text-shadow: 0 0 8px rgba(233, 69, 96, 0.8);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,11 +73,13 @@
             <div class="chapter-content">
                 <p>Siguiendo las indicaciones, llegas a una antigua biblioteca. En la entrada hay un librero que te detiene:</p>
                 <blockquote>"Para acceder a nuestro tesoro de conocimientos, debes demostrar tu sabiduría. Responde esta adivinanza:"</blockquote>
-                <div class="hint">
-                    <p>"Siempre va y viene pero nunca se mueve de su sitio. Puede ser tan fuerte que rompe rocas, o tan suave que apenas lo notas. La vida nació en su dominio. ¿Qué es?"</p>
+                <div class="hint hint-animated adivinanza">
+                    <p>"Siempre va y viene pero nunca se mueve de su sitio.</p>
+                    <p>Puede ser tan fuerte que rompe rocas, o tan suave que apenas lo notas.</p>
+                    <p>La vida nació en su dominio. ¿Qué es?"</p>
                 </div>
                 
-                <div class="hint">
+                <div class="hint hint-animated">
                     <p>Nota: Este es un archivo de ejemplo que muestra cómo se vería este capítulo. En la versión final, los capítulos se cargan dinámicamente mediante JavaScript sin recargar la página.</p>
                 </div>
             </div>

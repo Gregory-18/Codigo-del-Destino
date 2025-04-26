@@ -7,7 +7,7 @@ const chapters = [
             <p>Al abrir la carta, descubres un mensaje enigmático:</p>
             <blockquote>"El secreto se oculta tras un candado numérico. La inscripción indica que el número mágico es la suma de dos números misteriosos: el día en que comenzó todo y el número de llaves que guarda el guardián."</blockquote>
             <p>En el reverso de la carta hay algunas pistas adicionales:</p>
-            <div class="hint">
+            <div class="hint hint-animated">
                 <p>- El día en que comenzó todo es el primer día de la semana.</p>
                 <p>- El guardián siempre lleva consigo tantas llaves como colores tiene el arcoíris.</p>
             </div>
@@ -28,7 +28,9 @@ const chapters = [
         title: "El Mensaje Cifrado",
         content: `
             <p>Al abrir el candado, encuentras un pergamino con un mensaje cifrado:</p>
-            <blockquote class="typewriter">"JQ XJHWJYT XJ JSHZJSYWF JS QF GNGQNTYJHF"</blockquote>
+            <div class="cipher-text" id="cipher-message">
+                "JQ XJHWJYT XJ JSHZJSYWF JS QF GNGQNTYJHF"
+            </div>
             <p>Una nota adjunta menciona: "El código está en el alfabeto, solo debes retroceder en el tiempo."</p>
         `,
         puzzle: {
@@ -48,8 +50,10 @@ const chapters = [
         content: `
             <p>Siguiendo las indicaciones, llegas a una antigua biblioteca. En la entrada hay un librero que te detiene:</p>
             <blockquote>"Para acceder a nuestro tesoro de conocimientos, debes demostrar tu sabiduría. Responde esta adivinanza:"</blockquote>
-            <div class="hint">
-                <p>"Siempre va y viene pero nunca se mueve de su sitio. Puede ser tan fuerte que rompe rocas, o tan suave que apenas lo notas. La vida nació en su dominio. ¿Qué es?"</p>
+            <div class="hint hint-animated adivinanza">
+                <p>"Siempre va y viene pero nunca se mueve de su sitio.</p>
+                <p>Puede ser tan fuerte que rompe rocas, o tan suave que apenas lo notas.</p>
+                <p>La vida nació en su dominio. ¿Qué es?"</p>
             </div>
         `,
         puzzle: {
@@ -151,6 +155,55 @@ function loadChapter(chapterId) {
     }
     
     chapterContainer.appendChild(chapterElement);
+    
+    // Aplicar animaciones especiales según el capítulo
+    if (chapter.id === 2) {
+        setTimeout(() => {
+            const cipherMessage = document.getElementById('cipher-message');
+            if (cipherMessage) {
+                const text = cipherMessage.textContent.trim();
+                let animatedHtml = '';
+                
+                for (let i = 0; i < text.length; i++) {
+                    const char = text[i];
+                    if (char === ' ' || char === '"') {
+                        animatedHtml += char;
+                    } else {
+                        animatedHtml += `<span class="cipher-animated" style="--char-index: ${i}">${char}</span>`;
+                    }
+                }
+                
+                cipherMessage.innerHTML = animatedHtml;
+            }
+        }, 100);
+    } else if (chapter.id === 3) {
+        // Agregar estilo para la animación específica del capítulo 3 (adivinanza)
+        const style = document.createElement('style');
+        style.textContent = `
+            .hint-animated p {
+                margin-bottom: 8px;
+            }
+            
+            .hint-animated p:nth-child(2) {
+                animation: revealText 1.5s forwards 1.5s, floatText 3s ease-in-out infinite 3s;
+                display: block !important;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .hint-animated p:nth-child(3) {
+                animation: revealText 1.5s forwards 2.5s, floatText 3s ease-in-out infinite 4s;
+            }
+            
+            .adivinanza {
+                border: 2px solid rgba(233, 69, 96, 0.3);
+                padding: 15px !important;
+                background-color: rgba(233, 69, 96, 0.1);
+                margin-bottom: 20px;
+            }
+        `;
+        document.head.appendChild(style);
+    }
     
     // Aplicar animaciones de texto si hay elementos con la clase 'typewriter'
     const typewriterElements = document.querySelectorAll('.typewriter');

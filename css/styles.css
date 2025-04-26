@@ -156,6 +156,60 @@ label {
     margin: 20px 0;
 }
 
+/* Animación para las pistas */
+.hint-animated p {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 0 10px 0;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    max-width: 100%;
+    display: block;
+}
+
+.hint-animated p:first-child {
+    animation: revealText 1.5s forwards 0.5s, floatText 3s ease-in-out infinite 2s;
+}
+
+.hint-animated p:last-child {
+    animation: revealText 1.5s forwards 2.5s, floatText 3s ease-in-out infinite 4s;
+}
+
+/* Caso especial para adivinanza larga */
+.hint-animated p:only-child {
+    white-space: normal;
+    word-wrap: break-word;
+    animation: revealText 1.5s forwards 0.5s, floatText 3s ease-in-out infinite 2s;
+    line-height: 1.8;
+    font-style: italic;
+}
+
+@keyframes revealText {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes floatText {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        text-shadow: 0 0 5px rgba(233, 69, 96, 0.6);
+    }
+    25% {
+        transform: translateY(-3px) translateX(2px);
+        text-shadow: 0 0 8px rgba(233, 69, 96, 0.8);
+    }
+    75% {
+        transform: translateY(3px) translateX(-2px);
+        text-shadow: 0 0 8px rgba(233, 69, 96, 0.8);
+    }
+}
+
 /* Mensajes y feedback */
 .feedback {
     padding: 15px;
@@ -188,6 +242,65 @@ label {
     text-shadow: 0 0 5px rgba(233, 69, 96, 0.3);
     position: relative;
     overflow: hidden;
+}
+
+/* Estilos para el mensaje cifrado */
+.cipher-text {
+    font-family: monospace;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin: 20px 0;
+    line-height: 1.8;
+}
+
+.cipher-animated {
+    display: inline-block;
+    opacity: 0;
+    animation: glowIn 0.5s forwards;
+    animation-delay: calc(var(--char-index) * 0.1s);
+    text-shadow: 0 0 5px rgba(233, 69, 96, 0.6);
+}
+
+@keyframes glowIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        text-shadow: 0 0 8px rgba(233, 69, 96, 0.8);
+    }
+}
+
+/* Estilos específicos para la adivinanza */
+.riddle {
+    font-style: italic;
+    background-color: rgba(233, 69, 96, 0.15);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    margin: 20px 0;
+    line-height: 1.8;
+}
+
+.riddle p {
+    margin: 0;
+    position: relative;
+    animation: fadeInPieces 2.5s forwards;
+}
+
+@keyframes fadeInPieces {
+    0% { opacity: 0; }
+    20% { opacity: 0.4; }
+    40% { opacity: 0.6; }
+    60% { opacity: 0.8; }
+    80% { opacity: 0.9; }
+    100% { opacity: 1; }
 }
 
 .typewriter::after {

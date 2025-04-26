@@ -27,13 +27,13 @@
             <div class="chapter-content">
                 <p>Al abrir el candado, encuentras un pergamino con un mensaje cifrado:</p>
                 
-                <div class="cipher-text typewriter">
+                <div class="cipher-text" id="cipher-message">
                     "JQ XJHWJYT XJ JSHZJSYWF JS QF GNGQNTYJHF"
                 </div>
                 
                 <p>Una nota adjunta menciona: "El código está en el alfabeto, solo debes retroceder en el tiempo."</p>
                 
-                <div class="hint">
+                <div class="hint hint-animated">
                     <p>Nota: Este es un archivo de ejemplo que muestra cómo se vería este capítulo. En la versión final, los capítulos se cargan dinámicamente mediante JavaScript sin recargar la página.</p>
                 </div>
             </div>
@@ -96,15 +96,21 @@
                 hintIndex++;
             });
             
-            // Aplicar animación de typewriter
-            const typewriterElements = document.querySelectorAll('.typewriter');
-            typewriterElements.forEach(element => {
-                // Reiniciar la animación para demostración
-                element.style.animation = 'none';
-                setTimeout(() => {
-                    element.style.animation = '';
-                }, 10);
-            });
+            // Animar el mensaje cifrado
+            const cipherMessage = document.getElementById('cipher-message');
+            const text = cipherMessage.textContent.trim();
+            let animatedHtml = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (char === ' ' || char === '"') {
+                    animatedHtml += char;
+                } else {
+                    animatedHtml += `<span class="cipher-animated" style="--char-index: ${i}">${char}</span>`;
+                }
+            }
+            
+            cipherMessage.innerHTML = animatedHtml;
         });
     </script>
 </body>
